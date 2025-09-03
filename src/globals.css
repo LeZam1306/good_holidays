@@ -1,4 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
+
 @import "tailwindcss";
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  color: white;
+}
+
 @theme {
+  --font-valera-round: "Varela Round", sans-serif;
 }
