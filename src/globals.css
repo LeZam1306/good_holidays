@@ -11,6 +11,9 @@ h6,
 p {
   color: white;
 }
+.scrollbar-none::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
 
 @theme {
   --font-valera-round: "Varela Round", sans-serif;

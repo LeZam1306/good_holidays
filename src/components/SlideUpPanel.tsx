@@ -13,7 +13,7 @@ const SlideUpPanel = ({
   ref?: React.Ref<SlideUpPanelHandle>;
 }) => {
   const countraintOverlayRef = useRef<HTMLDivElement>(null);
-  let y = useMotionValue(0);
+  const y = useMotionValue(0);
 
   const animatePanel = (isOpen: boolean) => {
     const target = isOpen
@@ -31,7 +31,7 @@ const SlideUpPanel = ({
   return (
     <div
       ref={countraintOverlayRef}
-      className="absolute top-10 h-[200vh] w-full flex flex-col justify-end"
+      className="pointer-events-none absolute top-10 z-50 flex h-[200vh] w-full flex-col justify-end"
       style={{ height: "calc(-161px + 200vh" }}
     >
       <motion.section
@@ -44,7 +44,7 @@ const SlideUpPanel = ({
         dragMomentum={false}
         dragElastic={0}
         style={{ y }}
-        className="relative bottom-0 h-screen w-full rounded-t-4xl bg-gray-900 px-6 py-4 pt-8"
+        className="scrollbar-none pointer-events-auto relative bottom-0 h-screen w-full rounded-t-4xl bg-gray-900 px-6 py-4 pt-8 pb-[161px]"
         onDragEnd={(_, info) => {
           if (info.point.y < window.innerHeight / 2 || info.velocity.y < -400) {
             animatePanel(true);
