@@ -1,4 +1,4 @@
-import NoEventSection from "../components/NoEventSection";
+import NoEventSection from "../components/home/NoEventSection";
 import SlideUpPanel from "../components/SlideUpPanel";
 
 const Home = () => {

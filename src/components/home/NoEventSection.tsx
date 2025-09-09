@@ -2,7 +2,7 @@ import { motion } from "motion/react";
 
 const NoEventSection = () => {
   return (
-    <section className="flex flex-col items-center justify-center gap-3 px-5 mt-[30%]">
+    <section className="mt-[30%] flex flex-col items-center justify-center gap-3 px-5">
       <motion.img
         initial={{ y: 0 }}
         animate={{ y: [0, 3, 0] }}
