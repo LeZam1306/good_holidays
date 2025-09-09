@@ -1,17 +1,16 @@
 import { useMutation } from "@tanstack/react-query";
 import { authFetch } from "../services/auth/authFetch";
-import type { credentialInterface } from "../types/credential.interface";
+import type { CredentialInterface } from "../types/Credential.interface";
+import type { DataInterface } from "../types/Data.interface";
 
 export const useAuth = () => {
-  const { mutate, data, error, isPending, reset } = useMutation({
+  const { mutate, data, error, isError, isPending, reset } = useMutation({
     mutationFn: (variables: {
-      credential: credentialInterface;
+      credential: CredentialInterface;
       authType: "login" | "signup";
-    }) => authFetch(variables.credential, variables.authType),
-    onSuccess: (response) => {
-      console.log(response);
-    },
+    }): Promise<DataInterface> =>
+      authFetch(variables.credential, variables.authType),
   });
 
-  return { mutate, data, error, isPending, reset };
+  return { mutate, data, error, isError, isPending, reset };
 };

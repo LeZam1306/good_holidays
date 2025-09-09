@@ -1,12 +1,12 @@
 import { useState, type FormEvent } from "react";
 import { useAuth } from "../../hooks/useAuth.ts";
 import { credentialSchema } from "../../schemas/credential.schema.ts";
-import type { credentialInterface } from "../../types/credential.interface.ts";
+import type { CredentialInterface } from "../../types/Credential.interface.ts";
 import Button from "./Button";
 
 const SignupForm = () => {
   const { mutate } = useAuth();
-  const [inputs, setInputs] = useState<credentialInterface>({
+  const [inputs, setInputs] = useState<CredentialInterface>({
     email: "",
     password: "",
   });
