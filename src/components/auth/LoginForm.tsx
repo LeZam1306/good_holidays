@@ -30,12 +30,11 @@ const LoginForm = () => {
       onSubmit={handleLogin}
       className="mx-2 flex flex-col items-stretch gap-4"
     >
-      {data?.error ||
-        (isError && (
-          <p className="w-full rounded-full border-2 border-red-800 bg-red-950 px-4 py-3 text-center text-lg font-semibold text-white">
-            {data?.error ? data.message : "Server error, try again later"}
-          </p>
-        ))}
+      {isError && (
+        <p className="w-full rounded-full border-2 border-red-800 bg-red-950 px-4 py-3 text-center text-lg font-semibold text-white">
+          {data?.error ? data.message : "Server error, try again later"}
+        </p>
+      )}
       <input
         name="email"
         type="email"

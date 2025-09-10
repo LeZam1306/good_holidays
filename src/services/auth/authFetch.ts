@@ -10,5 +10,9 @@ export const authFetch = async (
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(credential),
   });
+  if (!res.ok) {
+    const errorRes = await res.json();
+    throw new Error(errorRes.message || "Server Error");
+  }
   return res.json();
 };

@@ -1,11 +1,12 @@
 import { useState, type FormEvent } from "react";
+import { OrbitProgress } from "react-loading-indicators";
 import { useAuth } from "../../hooks/useAuth.ts";
 import { credentialSchema } from "../../schemas/credential.schema.ts";
 import type { CredentialInterface } from "../../types/Credential.interface.ts";
 import Button from "./Button";
 
 const SignupForm = () => {
-  const { mutate } = useAuth();
+  const { mutate, isPending, data, isError } = useAuth();
   const [inputs, setInputs] = useState<CredentialInterface>({
     email: "",
     password: "",
@@ -40,6 +41,11 @@ const SignupForm = () => {
           type="text"
           placeholder="surname"
         />*/}
+        {isError && (
+          <p className="w-full rounded-full border-2 border-red-800 bg-red-950 px-4 py-3 text-center text-lg font-semibold text-white">
+            {data?.error ? data.message : "Server error, try again later"}
+          </p>
+        )}
         <input
           className="w-full rounded-full bg-gray-800 px-4 py-3 text-lg text-white"
           name="email"
@@ -57,7 +63,18 @@ const SignupForm = () => {
           onChange={handleChange}
         />
       </div>
-      <Button type="submit">Signup</Button>
+      <Button type="submit">
+        {isPending ? (
+          <OrbitProgress
+            dense
+            color="#ffffff"
+            textColor="#ffffff"
+            style={{ fontSize: "5px" }}
+          />
+        ) : (
+          "Signup"
+        )}
+      </Button>
     </form>
   );
 };
