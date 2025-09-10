@@ -14,7 +14,9 @@ export const useAuth = () => {
     }): Promise<DataInterface> =>
       authFetch(variables.credential, variables.authType),
     onSuccess: (data, variables) => {
-      if (variables.authType === "login" && !data.error) navigate("/dashboard");
+      if (variables.authType === "login" && !data.error) {
+        navigate("/dashboard");
+      }
     },
   });
 
