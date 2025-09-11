@@ -42,12 +42,12 @@ const SignupForm = () => {
           placeholder="surname"
         />*/}
         {isError && (
-          <p className="w-full rounded-full border-2 border-red-800 bg-red-950 px-4 py-3 text-center text-lg font-semibold text-white">
+          <p className="w-full rounded-xl border-2 border-red-800 bg-red-950 px-4 py-3 text-center text-lg font-semibold text-white">
             {data?.error ? data.message : "Server error, try again later"}
           </p>
         )}
         <input
-          className="w-full rounded-full bg-gray-800 px-4 py-3 text-lg text-white"
+          className="w-full rounded-xl bg-gray-800 px-4 py-3 text-lg text-white"
           name="email"
           type="email"
           placeholder="myemail@mail.com"
@@ -55,7 +55,7 @@ const SignupForm = () => {
           onChange={handleChange}
         />
         <input
-          className="w-full rounded-full bg-gray-800 px-4 py-3 text-lg text-white"
+          className="w-full rounded-xl bg-gray-800 px-4 py-3 text-lg text-white"
           name="password"
           type="password"
           placeholder="Password"

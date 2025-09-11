@@ -31,7 +31,7 @@ const LoginForm = () => {
       className="mx-2 flex flex-col items-stretch gap-4"
     >
       {isError && (
-        <p className="w-full rounded-full border-2 border-red-800 bg-red-950 px-4 py-3 text-center text-lg font-semibold text-white">
+        <p className="w-full rounded-xl border-2 border-red-800 bg-red-950 px-4 py-3 text-center text-lg font-semibold text-white">
           {data?.error ? data.message : "Server error, try again later"}
         </p>
       )}
@@ -39,14 +39,14 @@ const LoginForm = () => {
         name="email"
         type="email"
         placeholder="myemail@mail.com"
-        className="w-full rounded-full bg-gray-900 px-4 py-3 text-lg text-white"
+        className="w-full rounded-xl bg-gray-900 px-4 py-3 text-lg text-white"
         onChange={handleChange}
       />
       <input
         name="password"
         type="password"
         placeholder="Password"
-        className="w-full rounded-full bg-gray-900 px-4 py-3 text-lg text-white"
+        className="w-full rounded-xl bg-gray-900 px-4 py-3 text-lg text-white"
         onChange={handleChange}
       />
       <Button type="submit">
