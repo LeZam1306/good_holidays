@@ -1,5 +1,5 @@
-export interface DataInterface {
+export interface DataInterface<T = object> {
   error: boolean;
   message: string;
-  data: object;
+  data: T;
 }
