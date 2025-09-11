@@ -1,26 +1,41 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
+import { getUserFetch } from "../services/getUserFetch";
 
 interface UserInfos {
   pseudo: string;
   creationDate: string;
-  id: string;
+  _id: string;
+  verified: boolean;
 }
 interface Store extends UserInfos {
   setUserInfos: (userInfos: UserInfos) => void;
+  fetchUser: () => void;
+  connected: boolean;
 }
 
 export const useAppStore = create<Store>()(
   devtools((set) => ({
     pseudo: "",
     creationDate: "",
-    id: "",
+    _id: "",
+    connected: false,
+    verified: false,
     setUserInfos: (usersInfos) => {
       set({
         pseudo: usersInfos.pseudo,
         creationDate: usersInfos.creationDate,
-        id: usersInfos.id,
+        _id: usersInfos._id,
       });
+    },
+    fetchUser: async () => {
+      try {
+        const res = await getUserFetch();
+        const userInfo = res.data;
+        set({ ...userInfo, connected: true });
+      } catch (error) {
+        console.log(error);
+      }
     },
   }))
 );

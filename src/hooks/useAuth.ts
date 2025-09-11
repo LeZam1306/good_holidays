@@ -1,10 +1,12 @@
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { authFetch } from "../services/auth/authFetch";
+import { useAppStore } from "../stores/useStore";
 import type { CredentialInterface } from "../types/Credential.interface";
 import type { DataInterface } from "../types/Data.interface";
 
 export const useAuth = () => {
+  const { fetchUser } = useAppStore();
   const navigate = useNavigate();
 
   const { mutate, data, error, isError, isPending, reset } = useMutation({
@@ -15,7 +17,8 @@ export const useAuth = () => {
       authFetch(variables.credential, variables.authType),
     onSuccess: (data, variables) => {
       if (variables.authType === "login" && !data.error) {
-        navigate("/dashboard");
+        fetchUser();
+        navigate("/");
       }
     },
   });
