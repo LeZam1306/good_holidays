@@ -1,4 +1,6 @@
 import { Outlet } from "react-router-dom";
+import Footer from "./Footer";
+import Header from "./Header";
 
 const Layout = () => {
   return (
@@ -11,8 +13,10 @@ const Layout = () => {
         }}
       />
       {/* Your Content/Components */}
-      <div className="font-inter font-valera-round relative z-10 m-auto h-[100dvh] max-w-2xl overflow-hidden pt-9 tracking-tight text-white">
+      <div className="font-inter font-valera-round relative z-10 m-auto flex h-[100dvh] max-w-2xl flex-col justify-start overflow-hidden pt-5 tracking-tight text-white">
+        <Header />
         <Outlet />
+        <Footer />
       </div>
     </main>
   );
