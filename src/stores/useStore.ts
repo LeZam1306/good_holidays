@@ -35,8 +35,9 @@ export const useAppStore = create<Store>()(
             const res = await getUserFetch();
             const userInfo = res.data;
             set({ ...userInfo, connected: true });
-          } catch (error) {
-            console.log(error);
+          } catch (e) {
+            set({ connected: false });
+            console.log("User not connected: " + e);
           }
         },
       }),
