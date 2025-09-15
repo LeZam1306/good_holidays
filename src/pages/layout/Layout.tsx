@@ -13,9 +13,11 @@ const Layout = () => {
         }}
       />
       {/* Your Content/Components */}
-      <div className="font-inter font-valera-round relative z-10 m-auto flex h-[100dvh] max-w-2xl flex-col justify-start overflow-hidden pt-5 tracking-tight text-white">
+      <div className="font-inter font-valera-round relative z-10 m-auto flex min-h-screen max-w-2xl flex-col justify-start overflow-hidden pt-5 tracking-tight text-white">
         <Header />
-        <Outlet />
+        <div className="flex-1">
+          <Outlet />
+        </div>
         <Footer />
       </div>
     </main>

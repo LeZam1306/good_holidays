@@ -1,5 +1,5 @@
 import { Ellipsis } from "lucide-react";
-import DateEvent from "../components/event/DateEvent";
+import DateEvent from "../components/common/DateEvent";
 import StatusEvent from "../components/event/StatusEvent";
 import NoEventSection from "../components/home/NoEventSection";
 import { useGetEvents } from "../hooks/useGetEvents";
