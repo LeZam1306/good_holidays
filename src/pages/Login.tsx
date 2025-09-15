@@ -1,6 +1,6 @@
-import SlideUpPanel from "../components/SlideUpPanel";
 import LoginForm from "../components/auth/LoginForm";
 import SignupForm from "../components/auth/SignupForm";
+import SlideUpPanel from "../components/common/SlideUpPanel";
 
 const Login = () => {
   return (
