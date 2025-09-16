@@ -3,6 +3,7 @@ import { OrbitProgress } from "react-loading-indicators";
 import { useAuth } from "../../hooks/useAuth.ts";
 import { credentialSchema } from "../../schemas/credential.schema.ts";
 import type { CredentialInterface } from "../../types/Credential.interface.ts";
+import InputField from "../common/InputField";
 import Button from "./Button";
 
 const SignupForm = () => {
@@ -40,16 +41,14 @@ const SignupForm = () => {
             {data?.error ? data.message : "Server error, try again later"}
           </p>
         )}
-        <input
-          className="w-full rounded-xl bg-gray-800 px-4 py-3 text-lg text-white"
+        <InputField
           name="email"
           type="email"
           placeholder="myemail@mail.com"
           value={inputs.email}
           onChange={handleChange}
         />
-        <input
-          className="w-full rounded-xl bg-gray-800 px-4 py-3 text-lg text-white"
+        <InputField
           name="password"
           type="password"
           placeholder="Password"

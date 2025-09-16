@@ -2,7 +2,9 @@ import { Plus } from "lucide-react";
 import { useRef } from "react";
 import { useLocation } from "react-router-dom";
 import SlideUpPanel from "../../components/common/SlideUpPanel";
+import CreateEventForm from "../../components/event/CreateEventForm";
 import type { SlideUpPanelHandleInterface } from "../../types/SlideUpPanel.interface";
+
 const Footer = () => {
   const location = useLocation();
   const locationName = location.pathname.substring(1);
@@ -18,7 +20,9 @@ const Footer = () => {
           >
             <Plus size={23} />
           </button>
-          <SlideUpPanel ref={slideUpPanelRef}></SlideUpPanel>
+          <SlideUpPanel ref={slideUpPanelRef}>
+            <CreateEventForm />
+          </SlideUpPanel>
         </nav>
       );
     default:

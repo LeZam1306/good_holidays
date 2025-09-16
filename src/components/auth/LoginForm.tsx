@@ -3,6 +3,7 @@ import { OrbitProgress } from "react-loading-indicators";
 import { useAuth } from "../../hooks/useAuth";
 import { credentialSchema } from "../../schemas/credential.schema";
 import type { CredentialInterface } from "../../types/Credential.interface";
+import InputField from "../common/InputField";
 import Button from "./Button";
 
 const LoginForm = () => {
@@ -35,18 +36,18 @@ const LoginForm = () => {
           {data?.error ? data.message : "Server error, try again later"}
         </p>
       )}
-      <input
+      <InputField
         name="email"
         type="email"
         placeholder="myemail@mail.com"
-        className="w-full rounded-xl bg-gray-900 px-4 py-3 text-lg text-white"
+        variant="auth"
         onChange={handleChange}
       />
-      <input
+      <InputField
         name="password"
         type="password"
         placeholder="Password"
-        className="w-full rounded-xl bg-gray-900 px-4 py-3 text-lg text-white"
+        variant="auth"
         onChange={handleChange}
       />
       <Button type="submit">

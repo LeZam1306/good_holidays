@@ -43,13 +43,20 @@ const SlideUpPanel = ({
         style={{ y }}
         className="scrollbar-none pointer-events-auto relative bottom-0 h-screen w-full rounded-t-lg bg-gray-900 px-6 py-4 pt-8 pb-[120px]"
         onDragEnd={(_, info) => {
-          if (info.point.y < window.innerHeight / 2 || info.velocity.y < -400) {
-            animatePanel(true);
-          } else if (
-            info.point.y > window.innerHeight / 2 ||
-            info.velocity.y > 400
-          ) {
-            animatePanel(false);
+          const currentY = y.get();
+          const threshold = -window.innerHeight / 2; // Threshold at mid-screen height
+
+          // Priority to velocity (fast gesture)
+          if (info.velocity.y < -400) {
+            animatePanel(true); // Fast upward gesture = open
+          } else if (info.velocity.y > 400) {
+            animatePanel(false); // Fast downward gesture = close
+          }
+          // Otherwise, base on position
+          else if (currentY < threshold) {
+            animatePanel(true); // Panel above threshold = stay open
+          } else {
+            animatePanel(false); // Panel below threshold = close
           }
         }}
       >
