@@ -32,7 +32,7 @@ const SlideUpPanel = ({
     <div
       ref={countraintOverlayRef}
       className="pointer-events-none absolute top-10 z-50 flex h-[200vh] w-full flex-col justify-end"
-      style={{ height: "calc(-161px + 200vh" }}
+      //style={{ height: "calc(-161px + 200vh" }}
     >
       <motion.section
         drag="y"
@@ -44,7 +44,7 @@ const SlideUpPanel = ({
         dragMomentum={false}
         dragElastic={0}
         style={{ y }}
-        className="scrollbar-none pointer-events-auto relative bottom-0 h-screen w-full rounded-t-lg bg-gray-900 px-6 py-4 pt-8 pb-[161px]"
+        className="scrollbar-none pointer-events-auto relative bottom-0 h-screen w-full rounded-t-lg bg-gray-900 px-6 py-4 pt-8 pb-[120px]"
         onDragEnd={(_, info) => {
           if (info.point.y < window.innerHeight / 2 || info.velocity.y < -400) {
             animatePanel(true);

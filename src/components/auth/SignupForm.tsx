@@ -32,15 +32,9 @@ const SignupForm = () => {
   return (
     <form
       onSubmit={handleSignup}
-      className="flex h-full flex-col justify-between gap-4"
+      className="flex h-full flex-col justify-between gap-4 pb-4"
     >
       <div className="flex flex-col gap-4">
-        {/*<input
-          className="w-full rounded-full bg-gray-800 px-4 py-3 text-lg text-white"
-          name="surnameSI"
-          type="text"
-          placeholder="surname"
-        />*/}
         {isError && (
           <p className="w-full rounded-xl border-2 border-red-800 bg-red-950 px-4 py-3 text-center text-lg font-semibold text-white">
             {data?.error ? data.message : "Server error, try again later"}
