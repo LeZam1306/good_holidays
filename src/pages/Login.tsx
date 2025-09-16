@@ -3,13 +3,10 @@ import Button from "../components/auth/Button";
 import LoginForm from "../components/auth/LoginForm";
 import SignupForm from "../components/auth/SignupForm";
 import SlideUpPanel from "../components/common/SlideUpPanel";
-
-interface SlideUpPanelHandle {
-  togglePanel: () => void;
-}
+import type { SlideUpPanelHandleInterface } from "../types/SlideUpPanel.interface";
 
 const Login = () => {
-  const slideUpPanelRef = useRef<SlideUpPanelHandle>(null);
+  const slideUpPanelRef = useRef<SlideUpPanelHandleInterface>(null);
 
   return (
     <div className="h-full">

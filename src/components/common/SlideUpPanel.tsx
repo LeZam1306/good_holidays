@@ -1,16 +1,13 @@
 import { animate, motion, useMotionValue } from "motion/react";
 import { useImperativeHandle, useRef } from "react";
-
-interface SlideUpPanelHandle {
-  togglePanel: () => void;
-}
+import type { SlideUpPanelHandleInterface } from "../../types/SlideUpPanel.interface";
 
 const SlideUpPanel = ({
   children,
   ref,
 }: {
   children?: React.ReactNode;
-  ref?: React.Ref<SlideUpPanelHandle>;
+  ref?: React.Ref<SlideUpPanelHandleInterface>;
 }) => {
   const countraintOverlayRef = useRef<HTMLDivElement>(null);
   const y = useMotionValue(0);

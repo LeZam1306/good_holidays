@@ -5,12 +5,7 @@ import NoEventSection from "../components/home/NoEventSection";
 import { useGetEvents } from "../hooks/useGetEvents";
 
 const Home = () => {
-  //const { fetchUser, connected } = useAppStore();
   const { data } = useGetEvents();
-
-  //if (isError) {
-  //fetchUser();
-  //}
 
   return (
     <div className="h-full">
@@ -35,7 +30,7 @@ const Home = () => {
                 </div>
                 <div className="mx-2 flex flex-row items-center justify-between border-t-1 border-gray-700 px-2 py-1">
                   <DateEvent date={event.date} />
-                  <button>
+                  <button type="button">
                     <Ellipsis className="text-white" />
                   </button>
                 </div>
