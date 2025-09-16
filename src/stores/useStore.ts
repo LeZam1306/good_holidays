@@ -12,6 +12,7 @@ interface Store extends UserInfos {
   setUserInfos: (userInfos: UserInfos) => void;
   fetchUser: () => void;
   connected: boolean;
+  changePseudo: (pseudo: string) => void;
 }
 
 export const useAppStore = create<Store>()(
@@ -29,6 +30,9 @@ export const useAppStore = create<Store>()(
             creationDate: usersInfos.creationDate,
             _id: usersInfos._id,
           });
+        },
+        changePseudo: (pseudo: string) => {
+          set({ pseudo: pseudo });
         },
         fetchUser: async () => {
           try {
