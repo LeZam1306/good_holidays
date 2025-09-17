@@ -1,5 +1,6 @@
 import { Ellipsis } from "lucide-react";
 import DateEvent from "../components/common/DateEvent";
+import Modal from "../components/common/Modal";
 import StatusEvent from "../components/event/StatusEvent";
 import NoEventSection from "../components/home/NoEventSection";
 import { useGetEvents } from "../hooks/useGetEvents";
@@ -7,8 +8,11 @@ import { useGetEvents } from "../hooks/useGetEvents";
 const Home = () => {
   const { data } = useGetEvents();
 
+  const handleOpenModal = (title: string) => {};
+
   return (
     <div className="h-full">
+      <Modal>bonjour</Modal>
       {data?.data.events.length === 0 ? (
         <NoEventSection />
       ) : (
@@ -18,6 +22,7 @@ const Home = () => {
               <li
                 key={event._id}
                 className="w-full rounded-xl bg-gray-900/70 backdrop-blur"
+                onClick={() => handleOpenModal(event.eventName)}
               >
                 <div className="flex flex-row justify-between py-2 pr-3 pl-4">
                   <div>
