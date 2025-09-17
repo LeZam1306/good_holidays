@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { patchPseudoFetch } from "../services/patchPseudoFetch";
+import { patchPseudoFetch } from "../services/user/patchPseudoFetch";
 import type { DataInterface } from "../types/Data.interface";
 
 export const usePatchPseudo = () => {

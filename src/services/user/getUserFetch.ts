@@ -1,4 +1,4 @@
-import type { DataInterface } from "../types/Data.interface";
+import type { DataInterface } from "../../types/Data.interface";
 
 export const getUserFetch = async ():
   | Promise<DataInterface<object>>

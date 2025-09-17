@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
-import { getUserFetch } from "../services/getUserFetch";
+import { getUserFetch } from "../services/user/getUserFetch";
 
 interface UserInfos {
   pseudo: string;

@@ -1,4 +1,4 @@
-import type { DataInterface } from "../types/Data.interface";
+import type { DataInterface } from "../../types/Data.interface";
 
 export const patchPseudoFetch = async (newPseudo: {
   pseudo: string;
