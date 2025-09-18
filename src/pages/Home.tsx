@@ -1,9 +1,7 @@
-import { Ellipsis } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import DateEvent from "../components/common/DateEvent";
 import Modal from "../components/common/Modal";
 import EventInfo from "../components/event/EventInfo";
-import StatusEvent from "../components/event/StatusEvent";
+import EventCard from "../components/home/EventCard";
 import NoEventSection from "../components/home/NoEventSection";
 import { useGetEventInfo } from "../hooks/useGetEventInfo";
 import { useGetEvents } from "../hooks/useGetEvents";
@@ -46,29 +44,11 @@ const Home = () => {
         <ul className="flex flex-col items-center justify-center gap-3 px-4">
           {data?.data.events.map((event) => {
             return (
-              <li
+              <EventCard
                 key={event._id}
-                className="w-full rounded-xl bg-gray-900/70 backdrop-blur"
-              >
-                <div className="flex flex-row justify-between py-2 pr-3 pl-4">
-                  <div>
-                    <h3 className="text-lg">{event.eventName}</h3>
-                    <p className="text-sm text-gray-300">
-                      by <span>{event.promotor}</span>
-                    </p>
-                  </div>
-                  <StatusEvent status={event.status} />
-                </div>
-                <div className="mx-2 flex flex-row items-center justify-between border-t-1 border-gray-700 px-2 py-1">
-                  <DateEvent date={event.date} />
-                  <button
-                    type="button"
-                    onClick={() => handleOpenModal(event._id)}
-                  >
-                    <Ellipsis className="text-white" />
-                  </button>
-                </div>
-              </li>
+                event={event}
+                showMore={handleOpenModal}
+              />
             );
           })}
         </ul>
