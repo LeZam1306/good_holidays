@@ -1,4 +1,4 @@
-import { ChevronLeft, User } from "lucide-react";
+import { ChevronLeft, Mail, User } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Header = () => {
@@ -13,12 +13,20 @@ const Header = () => {
       return (
         <nav className="flex flex-row items-center justify-between px-4 pr-4.5 pb-3">
           <h2 className="text-2xl font-semibold">GoodHolidays</h2>
-          <Link
-            to="/profile"
-            className="rounded-full bg-gray-950/50 p-2 text-white"
-          >
-            <User size={24} />
-          </Link>
+          <div className="flex flex-row gap-2">
+            <Link
+              to="/messaging"
+              className="rounded-full bg-gray-950/50 p-2 text-white"
+            >
+              <Mail />
+            </Link>
+            <Link
+              to="/profile"
+              className="rounded-full bg-gray-950/50 p-2 text-white"
+            >
+              <User size={24} />
+            </Link>
+          </div>
         </nav>
       );
     default:

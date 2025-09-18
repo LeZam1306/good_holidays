@@ -32,7 +32,7 @@ const Modal = ({ children, ref, title }: ModalInterface) => {
       >
         <div className="flex h-14 w-full flex-row items-center justify-end border-b-1 border-gray-200 px-2">
           {title && (
-            <h3 className="absolute left-0 w-full pr-[38px] text-center text-xl">
+            <h3 className="absolute left-0 w-full p-[38px] text-center text-xl">
               {title}
             </h3>
           )}
