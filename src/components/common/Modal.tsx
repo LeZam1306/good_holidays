@@ -1,9 +1,7 @@
 import { CircleX } from "lucide-react";
 import { useImperativeHandle, useRef, useState } from "react";
+import type { ModalToggleRef } from "../../types/ModalToggle.interface";
 
-interface ModalToggleRef {
-  toggleModal: () => void;
-}
 interface ModalInterface {
   children: React.ReactNode;
   ref?: React.Ref<ModalToggleRef>;
@@ -11,12 +9,14 @@ interface ModalInterface {
   title?: string;
 }
 
-const Modal = ({ children, ref, title = "Anniv de mikel" }: ModalInterface) => {
+const Modal = ({ children, ref, title }: ModalInterface) => {
   const modalRef = useRef<HTMLElement>(null);
-  const [isOpen, setIsOpen] = useState<boolean>(true);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   useImperativeHandle(ref, () => ({
-    toggleModal: () => setIsOpen(!isOpen),
+    toggleModal: () => {
+      setIsOpen(!isOpen);
+    },
   }));
 
   if (!isOpen) return <></>;
@@ -32,11 +32,15 @@ const Modal = ({ children, ref, title = "Anniv de mikel" }: ModalInterface) => {
       >
         <div className="flex h-14 w-full flex-row items-center justify-end border-b-1 border-gray-200 px-2">
           {title && (
-            <h3 className="abslute left-0 w-full translate-x-[15px] text-center  text-xl">
+            <h3 className="absolute left-0 w-full pr-[38px] text-center text-xl">
               {title}
             </h3>
           )}
-          <CircleX size={30} onClick={() => setIsOpen(!isOpen)} />
+          <CircleX
+            className="z-50"
+            size={30}
+            onClick={() => setIsOpen(!isOpen)}
+          />
         </div>
         {children}
       </article>

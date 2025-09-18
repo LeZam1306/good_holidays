@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { OrbitProgress } from "react-loading-indicators";
-import { useAuth } from "../../hooks/useAuth.ts";
 import { credentialSchema } from "../../schemas/credential.schema.ts";
+import { useAuth } from "../../hooks/useAuth.ts";
 import type { CredentialInterface } from "../../types/Credential.interface.ts";
 import InputField from "../common/InputField";
 import Button from "./Button";
