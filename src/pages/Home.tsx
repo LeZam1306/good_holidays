@@ -34,6 +34,7 @@ const Home = () => {
     <div className="h-full">
       <Modal ref={modalRef} title={selectedEvent?.eventName}>
         <EventInfo
+          eventId={selectedEvent?._id}
           isError={isError}
           isPending={isPending}
           content={eventInfoData?.data || undefined}

@@ -1,5 +1,6 @@
 import { CirclePlus, MapPin, Users } from "lucide-react";
 import { OrbitProgress } from "react-loading-indicators";
+import { useNavigate } from "react-router-dom";
 import type { EventInfoInterface } from "../../types/EventInfo.interface";
 
 interface EventInfoComponentInterface {
@@ -7,6 +8,7 @@ interface EventInfoComponentInterface {
   isPending: boolean;
   isError: boolean;
   isPromotor: boolean;
+  eventId: string | undefined;
 }
 
 const EventInfo = ({
@@ -14,7 +16,10 @@ const EventInfo = ({
   isPending,
   isError,
   isPromotor,
+  eventId,
 }: EventInfoComponentInterface) => {
+  const navigate = useNavigate();
+
   if (isError)
     return (
       <div className="flex w-full items-center justify-center p-4">
@@ -60,6 +65,7 @@ const EventInfo = ({
           {isPromotor && (
             <>
               <button
+                onClick={() => navigate(`/messaging?eventId=${eventId}`)}
                 type="button"
                 className="flex flex-row items-center justify-center gap-1 rounded-lg bg-gray-300 px-1 leading-none text-black"
               >
