@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { OrbitProgress } from "react-loading-indicators";
-import { credentialSchema } from "../../schemas/credential.schema.ts";
 import { useAuth } from "../../hooks/useAuth.ts";
+import { credentialSchema } from "../../schemas/credential.schema.ts";
 import type { CredentialInterface } from "../../types/Credential.interface.ts";
 import InputField from "../common/InputField";
 import Button from "./Button";
@@ -42,6 +42,7 @@ const SignupForm = () => {
           </p>
         )}
         <InputField
+          id="emailSignup"
           name="email"
           type="email"
           placeholder="myemail@mail.com"
@@ -49,6 +50,7 @@ const SignupForm = () => {
           onChange={handleChange}
         />
         <InputField
+          id="passwordSignup"
           name="password"
           type="password"
           placeholder="Password"

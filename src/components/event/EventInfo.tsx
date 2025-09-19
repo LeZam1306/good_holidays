@@ -1,4 +1,4 @@
-import { MapPin, Users } from "lucide-react";
+import { CirclePlus, MapPin, Users } from "lucide-react";
 import { OrbitProgress } from "react-loading-indicators";
 import type { EventInfoInterface } from "../../types/EventInfo.interface";
 
@@ -6,12 +6,14 @@ interface EventInfoComponentInterface {
   content: EventInfoInterface | undefined;
   isPending: boolean;
   isError: boolean;
+  isPromotor: boolean;
 }
 
 const EventInfo = ({
   content,
   isPending,
   isError,
+  isPromotor,
 }: EventInfoComponentInterface) => {
   if (isError)
     return (
@@ -55,6 +57,17 @@ const EventInfo = ({
               </li>
             );
           })}
+          {isPromotor && (
+            <>
+              <button
+                type="button"
+                className="flex flex-row items-center justify-center gap-1 rounded-lg bg-gray-300 px-1 leading-none text-black"
+              >
+                <CirclePlus size={18} />
+                Add participant
+              </button>
+            </>
+          )}
         </ul>
       </div>
     </div>

@@ -1,7 +1,7 @@
 import { Ellipsis } from "lucide-react";
+import type { EventInterface } from "../../types/Event.interface";
 import DateEvent from "../common/DateEvent";
 import StatusEvent from "../event/StatusEvent";
-import type { EventInterface } from "../../types/Event.interface";
 
 interface EventCardInterface {
   event: EventInterface;
@@ -18,7 +18,7 @@ const EventCard = ({ event, showMore }: EventCardInterface) => {
         <div>
           <h3 className="text-lg">{event.eventName}</h3>
           <p className="text-sm text-gray-300">
-            by <span>{event.promotor}</span>
+            by <span>{event.promotor[0]}</span>
           </p>
         </div>
         <StatusEvent status={event.status} />

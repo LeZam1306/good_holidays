@@ -5,9 +5,11 @@ import EventCard from "../components/home/EventCard";
 import NoEventSection from "../components/home/NoEventSection";
 import { useGetEventInfo } from "../hooks/useGetEventInfo";
 import { useGetEvents } from "../hooks/useGetEvents";
+import { useAppStore } from "../stores/useStore";
 import type { ModalToggleRef } from "../types/ModalToggle.interface";
 
 const Home = () => {
+  const { _id } = useAppStore();
   const [eventId, setEventId] = useState("");
   const { eventInfoData, refetch, isError, isPending } =
     useGetEventInfo(eventId);
@@ -35,6 +37,7 @@ const Home = () => {
           isError={isError}
           isPending={isPending}
           content={eventInfoData?.data || undefined}
+          isPromotor={selectedEvent?.promotor[1] === _id}
         />
       </Modal>
 

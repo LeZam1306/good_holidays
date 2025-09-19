@@ -5,7 +5,7 @@ export const useGetEvents = () => {
   const { data, isError, isPending, isSuccess } = useQuery({
     queryKey: ["events"],
     queryFn: getEventsFetch,
-    staleTime: 1000 * 5,
+    staleTime: 1000 * 60 * 5,
   });
 
   return { data, isError, isPending, isSuccess };
