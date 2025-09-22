@@ -1,5 +1,5 @@
 import { Send } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { OrbitProgress } from "react-loading-indicators";
 import { useSearchParams } from "react-router-dom";
 import InputField from "../components/common/InputField";
@@ -13,6 +13,10 @@ const Messaging = () => {
     () => searchesParams.get("eventId"),
     [searchesParams]
   );
+
+  useEffect(() => {
+    console.log(data);
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -51,12 +55,14 @@ const Messaging = () => {
             )}
           </button>
         </form>
-        {data?.error ? (
+        {data && typeof data?.error === "boolean" && data.error ? (
           <p className="text-center">{data.message}</p>
         ) : (
-          <p className="text-center">
-            {data?.message || "Invitation sent successfully"}
-          </p>
+          data?.error === false && (
+            <p className="text-center">
+              {data?.message || "Invitation sent successfully"}
+            </p>
+          )
         )}
         {isError && <p className="text-center">Error Server</p>}
       </div>

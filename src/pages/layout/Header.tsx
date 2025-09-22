@@ -1,7 +1,9 @@
 import { ChevronLeft, Mail, User } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useGetInvitationNumber } from "../../hooks/useGetInvitationNumber";
 
 const Header = () => {
+  const { data, isSuccess } = useGetInvitationNumber();
   const navigate = useNavigate();
   const location = useLocation();
   const locationName = location.pathname.substring(1);
@@ -16,9 +18,16 @@ const Header = () => {
           <div className="flex flex-row gap-2">
             <Link
               to="/messaging"
-              className="rounded-full bg-gray-950/50 p-2 text-white"
+              className="relative rounded-full bg-gray-950/50 p-2 text-white"
             >
               <Mail />
+              {isSuccess &&
+                typeof data?.data?.invitationNumber === "number" &&
+                data.data.invitationNumber > 0 && (
+                  <div className="absolute top-0 -right-0.5 flex h-4.5 w-4.5 items-center justify-center rounded-full bg-red-600 text-xs">
+                    {data.data.invitationNumber}
+                  </div>
+                )}
             </Link>
             <Link
               to="/profile"
