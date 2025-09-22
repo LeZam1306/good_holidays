@@ -1,5 +1,6 @@
 import { ChevronDown, MailPlus } from "lucide-react";
 import { useState } from "react";
+import { useRespondToInvitation } from "../../hooks/useRespondToInvitation";
 
 interface InvitationCardProps {
   invitation: {
@@ -16,10 +17,15 @@ interface InvitationCardProps {
 }
 
 const InvitationCard = ({ invitation }: InvitationCardProps) => {
+  const { mutate, isSuccess, data, isError } = useRespondToInvitation();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleRespond = (response: "ACCEPTED" | "REFUSED") => {
+    mutate({ eventId: invitation.event._id, response: response });
   };
 
   return (
@@ -70,12 +76,33 @@ const InvitationCard = ({ invitation }: InvitationCardProps) => {
             </p>
           </div>
           <div className="mt-4 flex gap-2">
-            <button className="rounded bg-green-600 px-3 py-2 text-sm text-white transition-colors hover:bg-green-700">
-              Accept
-            </button>
-            <button className="rounded bg-red-600 px-3 py-2 text-sm text-white transition-colors hover:bg-red-700">
-              Decline
-            </button>
+            {isError && (
+              <p className="rounded-lg bg-red-500 px-2 py-2">Error servor</p>
+            )}
+            {data === undefined ? (
+              <>
+                <button
+                  onClick={() => handleRespond("ACCEPTED")}
+                  className="rounded bg-green-600 px-3 py-2 text-sm text-white transition-colors hover:bg-green-700"
+                >
+                  Accept
+                </button>
+                <button
+                  onClick={() => handleRespond("REFUSED")}
+                  className="rounded bg-red-600 px-3 py-2 text-sm text-white transition-colors hover:bg-red-700"
+                >
+                  Decline
+                </button>
+              </>
+            ) : data.error ? (
+              <p className="rounded-lg bg-orange-500 px-2 py-2">
+                {data.message}
+              </p>
+            ) : (
+              <p className="rounded-lg bg-green-500 px-2 py-2">
+                {data.message}
+              </p>
+            )}
           </div>
         </div>
       </div>
