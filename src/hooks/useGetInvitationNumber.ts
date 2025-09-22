@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import { getInvitationNumber } from "../services/invitation/getInvitationNumberFetch";
+import { getInvitationNumberFetch } from "../services/invitation/getInvitationNumberFetch";
 
 export const useGetInvitationNumber = () => {
   const { data, isError, isPending, isSuccess } = useQuery({
     queryKey: ["invitationNumber"],
-    queryFn: getInvitationNumber,
+    queryFn: getInvitationNumberFetch,
     staleTime: 1000 * 60 * 2,
   });
 

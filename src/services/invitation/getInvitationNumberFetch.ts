@@ -1,6 +1,6 @@
 import type { DataInterface } from "../../types/Data.interface";
 
-export const getInvitationNumber = async ():
+export const getInvitationNumberFetch = async ():
   | Promise<DataInterface<{ invitationNumber: number }>>
   | never => {
   const res = await fetch("http://localhost:3000/api/invitation/count", {
