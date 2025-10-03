@@ -17,7 +17,7 @@ interface InvitationCardProps {
 }
 
 const InvitationCard = ({ invitation }: InvitationCardProps) => {
-  const { mutate, isSuccess, data, isError } = useRespondToInvitation();
+  const { mutate, data, isError } = useRespondToInvitation();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {

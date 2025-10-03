@@ -7,6 +7,7 @@ interface UserInfos {
   creationDate: string;
   _id: string;
   verified: boolean;
+  reset: () => void;
 }
 interface Store extends UserInfos {
   setUserInfos: (userInfos: UserInfos) => void;
@@ -33,6 +34,9 @@ export const useAppStore = create<Store>()(
         },
         changePseudo: (pseudo: string) => {
           set({ pseudo: pseudo });
+        },
+        reset: () => {
+          set(useAppStore.getInitialState());
         },
         fetchUser: async () => {
           try {

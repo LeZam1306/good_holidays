@@ -1,35 +1,13 @@
-import { Send, SquarePen } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { OrbitProgress } from "react-loading-indicators";
 import DateEvent from "../components/common/DateEvent";
-import { usePatchPseudo } from "../hooks/usePatchPseudo";
+import PseudoForm from "../components/profile/PseudoForm";
+import { usePostLogout } from "../hooks/usePostLogout";
 import { useAppStore } from "../stores/useStore";
 
 const Profile = () => {
-  const { mutate, isError, isSuccess } = usePatchPseudo();
+  const logout = usePostLogout();
   const { pseudo, creationDate, verified } = useAppStore();
-  const changePseudo = useAppStore((state) => state.changePseudo);
-  const [isEditing, setIsEditing] = useState<boolean>(true);
-  const [currentPseudo, setNewPseudo] = useState<string>(pseudo);
   const date = new Date(creationDate);
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    if (isSuccess) changePseudo(inputRef.current?.value as string);
-  }, [isSuccess, changePseudo]);
-
-  const handleClick = () => {
-    setIsEditing(false);
-    inputRef.current?.focus();
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNewPseudo(e.target.value);
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    mutate({ pseudo: currentPseudo });
-  };
 
   return (
     <div className="h-full">
@@ -38,44 +16,7 @@ const Profile = () => {
           {pseudo.substring(0, 1).toUpperCase()}
         </div>
       </div>
-      <form
-        onSubmit={handleSubmit}
-        className="flex w-full flex-col items-center justify-center px-4 pt-4"
-      >
-        <div className="relative flex flex-row items-center justify-center gap-2">
-          <input
-            ref={inputRef}
-            id="pseudo"
-            name="pseudo"
-            type="text"
-            className="text-center text-lg"
-            readOnly={isEditing}
-            value={currentPseudo}
-            onChange={handleChange}
-          />
-          {!isEditing ? (
-            <button
-              key="send"
-              type="submit"
-              className="absolute -right-7 translate-x-1/2 rounded-full bg-gray-950/50 p-2.5"
-            >
-              <Send />
-            </button>
-          ) : (
-            <button
-              key="edit"
-              type="button"
-              className="absolute -right-7 translate-x-1/2 rounded-full bg-gray-950/50 p-2.5"
-              onClick={handleClick}
-            >
-              <SquarePen />
-            </button>
-          )}
-        </div>
-        {isError && (
-          <p className="mt-2 text-yellow-500">This username already exists.</p>
-        )}
-      </form>
+      <PseudoForm />
       <ul className="mx-4 my-5 flex h-full flex-col items-start gap-2 rounded-xl bg-gray-950/50 px-4 py-3 text-lg">
         <li className="flex flex-row gap-2">
           Create the{" "}
@@ -91,6 +32,25 @@ const Profile = () => {
           >
             {verified ? "Verified" : "Verified Now"}
           </button>
+        </li>
+        <li>
+          <button
+            type="button"
+            onClick={() => logout.mutate()}
+            className="mt-2 text-yellow-500 underline"
+          >
+            {logout.isPending ? (
+              <OrbitProgress
+                dense
+                color="#ffffff"
+                textColor="#ffffff"
+                style={{ fontSize: "5px" }}
+              />
+            ) : (
+              "Log out of account"
+            )}
+          </button>
+          {logout.isError && <p>Error while logging out, please try again</p>}
         </li>
       </ul>
     </div>
