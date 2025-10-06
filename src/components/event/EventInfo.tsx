@@ -1,6 +1,7 @@
 import { CirclePlus, MapPin, Users } from "lucide-react";
 import { OrbitProgress } from "react-loading-indicators";
 import { useNavigate } from "react-router-dom";
+import { usePatchEvent } from "../../hooks/usePatchEvent";
 import type { EventInfoInterface } from "../../types/EventInfo.interface";
 import EditableField from "../common/EditableField";
 
@@ -14,35 +15,29 @@ interface EventInfoComponentInterface {
 
 const EventInfo = ({
   content,
-  isPending,
-  isError,
   isPromotor,
   eventId,
 }: EventInfoComponentInterface) => {
   const navigate = useNavigate();
+  const patchEvent = usePatchEvent();
 
   const handleSaveDescription = (newDescription: string) => {
-    console.log("Saving description:", newDescription);
-    // Ici tu ajouteras ta logique de sauvegarde
+    if (eventId) {
+      patchEvent.mutate({
+        eventId,
+        description: newDescription,
+      });
+    }
   };
 
   const handleSaveLocation = (newLocation: string) => {
-    console.log("Saving location:", newLocation);
-    // Ici tu ajouteras ta logique de sauvegarde
+    if (eventId) {
+      patchEvent.mutate({
+        eventId,
+        location: newLocation,
+      });
+    }
   };
-
-  if (isError)
-    return (
-      <div className="flex w-full items-center justify-center p-4">
-        <p className="text-red-500">A server error has occurred</p>
-      </div>
-    );
-  if (isPending)
-    return (
-      <div className="flex w-full items-center justify-center p-4">
-        <OrbitProgress color="#ffffff" size="small" textColor="#ffffff" />
-      </div>
-    );
   if (content === undefined)
     return (
       <div className="flex w-full items-center justify-center p-4">
@@ -51,6 +46,19 @@ const EventInfo = ({
     );
   return (
     <div className="p-4">
+      {/* Error messages display */}
+      {patchEvent.data?.error && (
+        <p className="mb-4 text-red-500">{patchEvent.data.message}</p>
+      )}
+
+      {/* Success messages display */}
+      {patchEvent.data && !patchEvent.data.error && (
+        <p className="mb-4 text-green-500">{patchEvent.data.message}</p>
+      )}
+
+      {/* Server error display */}
+      {patchEvent.isError && <p className="mb-4 text-red-500">Error server</p>}
+
       <div className="mb-4">
         <EditableField
           value={content.description || ""}
