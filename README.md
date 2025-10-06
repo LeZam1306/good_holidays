@@ -73,6 +73,8 @@
 - **Node.js** (v18 or higher)
 - **npm** or **yarn**
 - **Backend API** running on `http://localhost:3000`
+  - 📦 **Backend Repository**: [good_holidays-back_end](https://github.com/LeZam1306/good_holidays-back_end)
+  - The backend must be installed and running for the frontend to work properly
 
 ### Installation
 
