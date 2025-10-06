@@ -2,6 +2,7 @@ import { CirclePlus, MapPin, Users } from "lucide-react";
 import { OrbitProgress } from "react-loading-indicators";
 import { useNavigate } from "react-router-dom";
 import type { EventInfoInterface } from "../../types/EventInfo.interface";
+import EditableField from "../common/EditableField";
 
 interface EventInfoComponentInterface {
   content: EventInfoInterface | undefined;
@@ -19,6 +20,16 @@ const EventInfo = ({
   eventId,
 }: EventInfoComponentInterface) => {
   const navigate = useNavigate();
+
+  const handleSaveDescription = (newDescription: string) => {
+    console.log("Saving description:", newDescription);
+    // Ici tu ajouteras ta logique de sauvegarde
+  };
+
+  const handleSaveLocation = (newLocation: string) => {
+    console.log("Saving location:", newLocation);
+    // Ici tu ajouteras ta logique de sauvegarde
+  };
 
   if (isError)
     return (
@@ -41,11 +52,21 @@ const EventInfo = ({
   return (
     <div className="p-4">
       <div className="mb-4">
-        <p>{content.description}</p>
+        <EditableField
+          value={content.description || ""}
+          onSave={handleSaveDescription}
+          canEdit={isPromotor}
+          multiline={true}
+        />
       </div>
       <div className="mb-4 flex flex-row items-center gap-2">
         <MapPin />
-        <p>{content.location}</p>
+        <EditableField
+          value={content.location || ""}
+          onSave={handleSaveLocation}
+          canEdit={isPromotor}
+          className="flex-1"
+        />
       </div>
       <div>
         <h3 className="mb-2.5 flex flex-row items-center gap-2">
