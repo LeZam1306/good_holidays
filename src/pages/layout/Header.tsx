@@ -3,15 +3,18 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useGetInvitationNumber } from "../../hooks/useGetInvitationNumber";
 
 const Header = () => {
-  const { data, isSuccess } = useGetInvitationNumber();
+  const { data, isSuccess, handleActiveFetching, active } =
+    useGetInvitationNumber();
   const navigate = useNavigate();
   const location = useLocation();
   const locationName = location.pathname.substring(1);
 
   switch (locationName) {
     case "login":
+      if (active) handleActiveFetching(false);
       return <></>;
     case "":
+      if (!active) handleActiveFetching(true);
       return (
         <nav className="flex flex-row items-center justify-between px-4 pr-4.5 pb-3">
           <h2 className="text-2xl font-semibold">GoodHolidays</h2>
@@ -39,6 +42,7 @@ const Header = () => {
         </nav>
       );
     default:
+      if (active) handleActiveFetching(false);
       return (
         <nav className="flex flex-row  items-center px-4 pb-3 pl-4.5">
           <button

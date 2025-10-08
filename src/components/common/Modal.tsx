@@ -1,4 +1,5 @@
 import { CircleX } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
 import { useImperativeHandle, useRef, useState } from "react";
 import type { ModalToggleRef } from "../../types/ModalToggle.interface";
 
@@ -26,31 +27,45 @@ const Modal = ({
     },
   }));
 
-  if (!isOpen) return <></>;
   return (
-    <>
-      {background && (
-        <div
-          className="absolute top-0 left-0 z-[49] h-full w-full bg-black/60"
-          onClick={() => setIsOpen(!isOpen)}
-        ></div>
-      )}
-      <article className={className} ref={modalRef}>
-        <div className="flex h-14 w-full flex-row items-center justify-end border-b-1 border-gray-200 px-2">
-          {title && (
-            <h3 className="absolute left-0 w-full p-[38px] text-center text-xl">
-              {title}
-            </h3>
+    <AnimatePresence>
+      {isOpen && (
+        <>
+          {background && (
+            <motion.div
+              className="absolute top-0 left-0 z-[49] h-full w-full bg-black/60"
+              onClick={() => setIsOpen(!isOpen)}
+              transition={{ duration: 0.15 }}
+              animate={{ opacity: 1 }}
+              initial={{ opacity: 0 }}
+              exit={{ opacity: 0 }}
+            ></motion.div>
           )}
-          <CircleX
-            className="z-50"
-            size={30}
-            onClick={() => setIsOpen(!isOpen)}
-          />
-        </div>
-        {children}
-      </article>
-    </>
+          <motion.article
+            className={className}
+            ref={modalRef}
+            transition={{ duration: 0.15 }}
+            animate={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, scale: 0.5 }}
+            exit={{ opacity: 0, scale: 0.5 }}
+          >
+            <div className="flex h-14 w-full flex-row items-center justify-end border-b-1 border-gray-200 px-2">
+              {title && (
+                <h3 className="absolute left-0 w-full p-[38px] text-center text-xl">
+                  {title}
+                </h3>
+              )}
+              <CircleX
+                className="z-50"
+                size={30}
+                onClick={() => setIsOpen(!isOpen)}
+              />
+            </div>
+            {children}
+          </motion.article>
+        </>
+      )}
+    </AnimatePresence>
   );
 };
 
